@@ -2,6 +2,7 @@ package edu.utn.UTNPhones.controllers;
 
 import edu.utn.UTNPhones.dtos.ErrorResponseDto;
 import edu.utn.UTNPhones.exceptions.*;
+import org.hibernate.exception.GenericJDBCException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,7 +24,7 @@ public class AdviceController extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(DataAccessException.class)
     public ErrorResponseDto handleDataAccessException(DataAccessException exc) {
-        return new ErrorResponseDto(2, exc.getMessage());
+        return new ErrorResponseDto(2, exc.getRootCause().getMessage());
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -45,4 +46,10 @@ public class AdviceController extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NoSuchElementException.class)
     public ErrorResponseDto handleNoSuchElementException(){ return new ErrorResponseDto(6, "Not exists"); }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(GenericJDBCException.class)
+    public ErrorResponseDto handleGenericJDBCException(GenericJDBCException e){ return new ErrorResponseDto(7, e.getMessage() ); }
+
+
 }

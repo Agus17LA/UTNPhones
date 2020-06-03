@@ -22,8 +22,10 @@ public class CityController {
     }
 
     @GetMapping("/")
-    public List<City> allCities() throws EmptyListException {
-        return this.cityService.getAll();
+    public List<City> getCities(@RequestParam(value="cityId", required = false) Integer cityId) throws EmptyListException {
+        List cities = this.cityService.getCities(cityId);
+        if(cities.isEmpty()) throw new EmptyListException("Empty list of cities");
+        return cities;
     }
 
 

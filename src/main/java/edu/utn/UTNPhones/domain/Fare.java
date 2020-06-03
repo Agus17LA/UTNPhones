@@ -27,11 +27,9 @@ public class Fare {
     private City destinationCity;
 
     @Column(name="cost_per_minute")
-
     private Float costPerMinute;
 
     @Column(name="price_per_minute")
-
     private Float pricePerMinute;
 
     public boolean verifyNullValues(){

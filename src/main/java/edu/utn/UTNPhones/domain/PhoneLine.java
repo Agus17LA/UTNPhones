@@ -1,10 +1,13 @@
 package edu.utn.UTNPhones.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.stream.Stream;
 
 
 @AllArgsConstructor
@@ -12,7 +15,8 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name="phone_lines")
-public class PhoneLine {
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
+public class PhoneLine{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -39,5 +43,7 @@ public class PhoneLine {
     public enum LineStatus{
         ACTIVE,INACTIVE,SUSPENDED
     }
+
+    public boolean verifyNullValues(){  return Stream.of(user,numberLine,lineType,lineStatus).anyMatch(x->x == null);   }
 
 }

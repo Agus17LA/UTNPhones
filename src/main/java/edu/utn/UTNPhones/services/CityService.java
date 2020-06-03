@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -18,24 +19,7 @@ public class CityService {
         return this.cityRepository.save(city);
     }
 
-    public List<City> getAll() {
-        return this.cityRepository.findAll();
+    public List getCities(Integer cityId) throws DataAccessException{
+        return cityId != null ? Collections.singletonList(this.cityRepository.findById(cityId).orElseThrow()) : this.cityRepository.findAll();
     }
-
-    public void update(City city) throws DataAccessException, NotExistException {
-
-    }
-
-    public void delete(Integer i) throws DataAccessException, NotExistException {
-
-    }
-
-    public void logicDelete(Integer i) throws DataAccessException, NotExistException {
-
-    }
-
-    public void test(City city){
-
-    }
-
 }

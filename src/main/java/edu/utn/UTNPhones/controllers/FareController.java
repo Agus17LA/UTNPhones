@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/fare")
+@RequestMapping("/api/fares")
 public class FareController {
     @Autowired
     private FareService fareService;
 
     @PostMapping("/")
-    public void create(Fare fare) throws ParamException {
+    public Fare create(@RequestBody Fare fare) throws ParamException {
         if(fare.verifyNullValues()) throw new ParamException("Values of fare cannot be null");
-        fareService.create(fare);
+        return this.fareService.create(fare);
     }
 
     @PutMapping("/")

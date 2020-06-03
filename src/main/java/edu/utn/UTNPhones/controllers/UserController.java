@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -26,8 +26,7 @@ public class UserController {
     @PostMapping("/")
     public User create(@RequestBody User user) throws ParamException {
         if(user.verifyNullValues()) throw new ParamException("User attributes cannot be null");
-        user = this.userService.create(user);
-        return user;
+        return this.userService.create(user);
     }
 
     @DeleteMapping("/{userId}")
@@ -39,7 +38,7 @@ public class UserController {
     @GetMapping("/")
     public List<User> getUsers(@RequestParam(value="userId",required=false) Integer userId) throws EmptyListException {
         List users = this.userService.getUsers(userId);
-        if(users.isEmpty()) throw new EmptyListException("Empty list");
+        if(users.isEmpty()) throw new EmptyListException("Empty list of users");
         return users;
     }
 
@@ -47,6 +46,5 @@ public class UserController {
     public void update(@RequestBody User userUpdated) throws NotExistException {
         this.userService.update(userUpdated);
     }
-
 
 }

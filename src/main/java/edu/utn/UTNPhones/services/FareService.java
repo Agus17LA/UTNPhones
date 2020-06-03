@@ -22,17 +22,10 @@ public class FareService {
         return fareId != null ? Collections.singletonList(this.fareRepository.findById(fareId).orElseThrow()) : this.fareRepository.findAll();
     }
 
-    public void update(Fare fare) throws DataAccessException, NotExistException {
-        Fare fareToUpdate = this.fareRepository.getOne(fare.getId());
-        if(fareToUpdate!=null){
-            fareToUpdate.setCostPerMinute(fare.getCostPerMinute());
-            fareToUpdate.setDestinationCity(fare.getDestinationCity());
-            fareToUpdate.setPricePerMinute(fare.getPricePerMinute());
-            fareToUpdate.setOriginCity(fare.getOriginCity());
-            this.fareRepository.save(fareToUpdate);
-        }else{
-            throw new NotExistException("Fare not exist");
-        }
+    public void update(Fare fareUpdated) throws DataAccessException, NotExistException {
+        Fare fareToUpdate = this.fareRepository.getOne(fareUpdated.getId());
+        if(fareToUpdate == null) throw new NotExistException("That fare doesn't exists");
+        this.fareRepository.save(fareUpdated);
     }
 
 }

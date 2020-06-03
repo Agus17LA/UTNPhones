@@ -1,11 +1,13 @@
 package edu.utn.UTNPhones.domain;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.stream.Stream;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,6 +32,7 @@ public class Call {
     private PhoneLine destinationPhone;
 
     @Column(name="destination_number_line", nullable = false)
+
     private String destinationNumberLine;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -47,4 +50,13 @@ public class Call {
 
     @Column(name="total_price")
     private Float totalPrice;
+
+    public Call(String originNumberLine, String destinationNumberLine, Integer duration, Date callDate) {
+        this.originNumberLine = originNumberLine;
+        this.destinationNumberLine = destinationNumberLine;
+        this.duration = duration;
+        this.callDate = callDate;
+    }
+
+    public boolean verifyNullValues() { return Stream.of(originNumberLine,destinationNumberLine,duration,callDate).anyMatch(x->x == null);  }
 }
