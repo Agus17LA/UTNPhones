@@ -1,6 +1,7 @@
 package edu.utn.UTNPhones.services;
 
 import edu.utn.UTNPhones.domain.Call;
+import edu.utn.UTNPhones.projections.MinutesOfCallNewYear2001;
 import edu.utn.UTNPhones.repositories.ICallRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -16,4 +17,7 @@ public class CallService {
         return this.callRepository.save(newCall);
     }
 
+    public MinutesOfCallNewYear2001 getMinutesOfNewYear2001() throws DataAccessException{
+        return this.callRepository.getMinutesOfNewYear2001();
+    }
 }
