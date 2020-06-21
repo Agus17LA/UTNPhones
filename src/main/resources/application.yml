@@ -8,4 +8,4 @@ spring:
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/UtnPhones?allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: development
-    password: development01
+    password: development1

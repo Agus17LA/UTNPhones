@@ -18,19 +18,19 @@ public class User {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "id_card", nullable = false, unique = true)
+    @Column(name = "dni", nullable = false, unique = true)
     private String idCard;
 
-    @Column(name = "user_name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name="user_surname", nullable = false)
+    @Column(name="surname", nullable = false)
     private String surname;
 
     @Column(name="username", nullable = false)
     private String username;
 
-    @Column(name="user_password", nullable = false)
+    @Column(name="password", nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)
