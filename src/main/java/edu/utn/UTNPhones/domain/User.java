@@ -34,10 +34,10 @@ public class User {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="user_type", nullable = false)
+    @Column(name="user_type")
     private UserType userType;
 
-    @Column(name="user_status")
+    @Column(name="user_status" )
     private boolean userStatus;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -49,7 +49,7 @@ public class User {
     }
 
     public boolean verifyNullValues(){
-        return Stream.of(idCard, name, surname, username, password, userType, city).anyMatch(x -> x == null);
+        return Stream.of(idCard, name, surname, username, password, city).anyMatch(x -> x == null);
     }
 
 }

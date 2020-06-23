@@ -23,10 +23,10 @@ public class City {
     @JoinColumn(name="province_id", nullable = false)
     private Province province;
 
-    @Column(name="city_name")
+    @Column(name="city_name", unique = true)
     private String cityName;
 
-    @Column(name="city_prefix")
+    @Column(name="city_prefix", unique = true)
     private Integer cityPrefix;
 
     public boolean verifyNullValues(){
