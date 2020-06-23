@@ -3,6 +3,7 @@ package edu.utn.UTNPhones.repositories;
 import edu.utn.UTNPhones.domain.Call;
 import edu.utn.UTNPhones.projections.CallOfUser;
 import edu.utn.UTNPhones.projections.MinutesOfCallNewYear2001;
+import edu.utn.UTNPhones.projections.TopTenDestinationsByUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -20,4 +21,15 @@ public interface ICallRepository extends JpaRepository<Call,Integer> {
     @Query(value = "SELECT * FROM v_calls_of_user WHERE DniUserOrigin = ?",nativeQuery = true)
     List<CallOfUser> getCallsOfUser(String dni);
 
+    @Query(value = "SELECT\n" +
+            "FullNameUserOrigin,DniUserOrigin,OriginCall,OriginNumberLine,FullNameUserDest,DestinationNumberLine,DestinationCall,Invoice,Duration,CallDate,TotalPrice\n" +
+            " FROM v_calls_of_user WHERE CallDate >= ?1 AND CallDate <= ?2 AND DniUserOrigin = ?3",nativeQuery = true)
+    List<CallOfUser> getCallsByDates(String firstDate, String secondDate, String dni);
+
+
+    @Query(value = "SELECT count(DestinationCall) as \"times\", DestinationCall \n" +
+            "FROM v_calls_of_user \n" +
+            "WHERE DniUserOrigin = ? \n" +
+            "GROUP BY DestinationCall ORDER BY DestinationCall ASC LIMIT 10;", nativeQuery = true)
+    List<TopTenDestinationsByUser> getTopTenDestinationsByUser(String idCard);
 }

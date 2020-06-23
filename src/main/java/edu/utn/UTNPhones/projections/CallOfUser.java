@@ -3,10 +3,10 @@ package edu.utn.UTNPhones.projections;
 public interface CallOfUser {
     public String getFullNameUserOrigin();
     public String getDniUserOrigin();
-    public String getCityUserOrigin();
+    public String getOriginCall();
     public String getFullNameUserDest();
     public String getDniUserDest();
-    public String getCityUserDest();
+    public String getDestinationCall();
     public String getOriginNumberLine();
     public String getDestinationNumberLine();
     public Integer getInvoice();
@@ -16,10 +16,10 @@ public interface CallOfUser {
 
     void setFullNameUserOrigin(String FullNameUserOrigin);
     void setDniUserOrigin(String DniUserOrigin);
-    void setCityUserOrigin(String CityUserOrigin);
+    void setOriginCall(String OriginCall);
     void setFullNameUserDest(String FullNameUSerDest);
     void setDniUserDest(String DniUserDest);
-    void setCityUserDest(String CityUserDest);
+    void setDestinationCall(String DestinationCall);
     void setOriginNumberLine(String OriginNumberLine);
     void setDestinationNumberLine(String DestinationNumberLine);
     void setInvoice(Integer Invoice);

@@ -39,6 +39,12 @@ public class AdviceController extends ResponseEntityExceptionHandler {
         return new ErrorResponseDto(4, e.getMessage());
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(ValidationException.class)
+    public ErrorResponseDto handleValidationException(ValidationException e){
+        return new ErrorResponseDto(4, e.getMessage());
+    }
+
     @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(EmptyListException.class)
     public ErrorResponseDto handleEmptyListException(EmptyListException e){ return new ErrorResponseDto(5, e.getMessage()); }

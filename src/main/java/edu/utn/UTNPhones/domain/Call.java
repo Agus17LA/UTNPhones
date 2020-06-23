@@ -28,12 +28,19 @@ public class Call {
     private String originNumberLine;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="origin_city_id")
+    private City originCity;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="destination_line_id")
     private PhoneLine destinationPhone;
 
     @Column(name="destination_number_line", nullable = false)
-
     private String destinationNumberLine;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="destination_city_id")
+    private City destinationCity;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "invoice_id")
