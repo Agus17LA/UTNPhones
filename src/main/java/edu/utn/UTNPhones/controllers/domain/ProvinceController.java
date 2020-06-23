@@ -1,4 +1,4 @@
-package edu.utn.UTNPhones.controllers;
+package edu.utn.UTNPhones.controllers.domain;
 
 import edu.utn.UTNPhones.domain.Province;
 import edu.utn.UTNPhones.exceptions.EmptyListException;

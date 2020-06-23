@@ -1,6 +1,9 @@
-package edu.utn.UTNPhones.controllers;
+package edu.utn.UTNPhones.controllers.domain;
 
 import edu.utn.UTNPhones.domain.User;
+import edu.utn.UTNPhones.dtos.LoginRequestDto;
+import edu.utn.UTNPhones.exceptions.NotExistException;
+import edu.utn.UTNPhones.exceptions.ParamException;
 import edu.utn.UTNPhones.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,14 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    public User login(LoginRequestDto loginRequestDto) throws ParamException, NotExistException {
+        if(loginRequestDto.getUsername() == null || loginRequestDto.getPassword() == null){
+            throw new ParamException("User attributes cannot be null");
+        }else{
+            return this.userService.login(loginRequestDto.getUsername(), loginRequestDto.getPassword());
+        }
+    }
 
     public User addClient(User client){
         return this.userService.addClient(client);
@@ -32,16 +43,6 @@ public class UserController {
 
     /* ------------------------------------------------------------------------------------------------------------ */
 
-
-
-//    public User login(String username, String password) throws ParamException, NotExistException {
-//        if(username == null || password == null){
-//            throw new ParamException("User attributes cannot be null");
-//        }else{
-//            return this.userService.login(username, password);
-//        }
-//    }
-//
 //    @PostMapping("/")
 //    public User create(@RequestBody User user) throws ParamException {
 //        if(user.verifyNullValues()) throw new ParamException("User attributes cannot be null");

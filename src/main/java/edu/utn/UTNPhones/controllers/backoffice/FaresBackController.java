@@ -1,8 +1,7 @@
 package edu.utn.UTNPhones.controllers.backoffice;
 
-import edu.utn.UTNPhones.controllers.FareController;
+import edu.utn.UTNPhones.controllers.domain.FareController;
 import edu.utn.UTNPhones.exceptions.NotExistException;
-import edu.utn.UTNPhones.exceptions.ParamException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

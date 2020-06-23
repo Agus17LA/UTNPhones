@@ -1,6 +1,6 @@
 package edu.utn.UTNPhones.controllers.backoffice;
 
-import edu.utn.UTNPhones.controllers.PhoneLineController;
+import edu.utn.UTNPhones.controllers.domain.PhoneLineController;
 import edu.utn.UTNPhones.domain.PhoneLine;
 import edu.utn.UTNPhones.exceptions.ParamException;
 import org.springframework.beans.factory.annotation.Autowired;

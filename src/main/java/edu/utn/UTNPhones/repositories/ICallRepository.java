@@ -17,7 +17,7 @@ public interface ICallRepository extends JpaRepository<Call,Integer> {
             "FROM calls ca where date(ca.date_time) = date('2020-06-03');", nativeQuery = true)
     MinutesOfCallNewYear2001 getMinutesOfNewYear2001();
 
-    @Query(value = "SELECT *" + " from v_calls_of_user where DniUserOrigin = ?",nativeQuery = true)
+    @Query(value = "SELECT * FROM v_calls_of_user WHERE DniUserOrigin = ?",nativeQuery = true)
     List<CallOfUser> getCallsOfUser(String dni);
 
 }

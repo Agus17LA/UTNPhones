@@ -1,4 +1,4 @@
-package edu.utn.UTNPhones.controllers;
+package edu.utn.UTNPhones.controllers.domain;
 
 import edu.utn.UTNPhones.domain.Call;
 
