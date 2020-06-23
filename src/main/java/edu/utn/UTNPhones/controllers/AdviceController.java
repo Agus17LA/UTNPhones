@@ -51,5 +51,10 @@ public class AdviceController extends ResponseEntityExceptionHandler {
     @ExceptionHandler(GenericJDBCException.class)
     public ErrorResponseDto handleGenericJDBCException(GenericJDBCException e){ return new ErrorResponseDto(7, e.getMessage() ); }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ErrorResponseDto handleIllegalArgumentException(IllegalArgumentException exc){
+        return new ErrorResponseDto(8,exc.getMessage());
+    }
 
 }

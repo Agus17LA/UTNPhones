@@ -36,8 +36,8 @@ public class UserService {
         return this.userRepository.save(user);
     }
 
-    public List getUsers(Integer userId) throws DataAccessException {
-        return userId != null ? Collections.singletonList(this.userRepository.findById(userId).orElseThrow()) : this.userRepository.findAll();
+    public List getUsers(String dni) throws DataAccessException {
+        return dni != null ? Collections.singletonList(this.userRepository.getByIdCard(dni).orElseThrow()) : this.userRepository.findAll();
     }
 
     public void delete(Integer userId) throws DataAccessException,NotExistException {
@@ -68,7 +68,7 @@ public class UserService {
                         case "surname": user.setSurname((String) value); break;
                         case "username": user.setUsername((String) value); break;
                         case "password": user.setPassword((String) value); break;
-                        case "userType": user.setUserType((User.UserType) value); break;
+                        case "userType": user.setUserType(User.UserType.valueOf((String) value)); break;
                         case "userStatus": user.setUserStatus((boolean) value); break;
                         case "city":
                             City city = (City) cityService.getCities((Integer) value).get(0);

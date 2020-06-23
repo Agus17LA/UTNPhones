@@ -26,16 +26,16 @@ public class PhoneLine{
     @JoinColumn(name="user_id", nullable = false)
     private User user;
 
-    @Column(name="number_line", nullable = false)
+    @Column(name="number_line", nullable = false, unique = true)
     private String numberLine;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="line_type")
+    @Column(name="line_type", nullable = false)
     private LineType lineType;
 
     @Enumerated(EnumType.STRING)
     @Column(name="line_status")
-    private LineStatus lineStatus;
+    private LineStatus lineStatus = LineStatus.ACTIVE;
 
     public enum LineType{
         LANDLINE,MOBILE
@@ -44,6 +44,8 @@ public class PhoneLine{
         ACTIVE,INACTIVE,SUSPENDED
     }
 
-    public boolean verifyNullValues(){  return Stream.of(user,numberLine,lineType,lineStatus).anyMatch(x->x == null);   }
+
+
+    public boolean verifyNullValues(){  return Stream.of(user,numberLine,lineType).anyMatch(x->x == null);   }
 
 }

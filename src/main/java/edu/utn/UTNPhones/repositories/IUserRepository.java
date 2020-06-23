@@ -27,4 +27,5 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
     List<User> findAllByUserType(User.UserType userType);
 
     Optional<User> findByIdCardAndUserType(String clientDni, User.UserType client);
+
 }
