@@ -40,7 +40,7 @@ public class ClientsBackController {
     }
 
     @GetMapping(value={"/{clientDni}","/"})
-    public ResponseEntity getClients(@PathVariable(required=false) Optional<String> clientDni) throws EmptyListException {
+    public ResponseEntity getClients(@PathVariable(required=false) Optional<String> clientDni) {
         List users = this.userController.getClients(clientDni);
         if(users.isEmpty()) return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         return ResponseEntity.ok().body(users);
