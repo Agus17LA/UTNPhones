@@ -15,12 +15,12 @@ import java.util.Date;
 
 @RestController
 @RequestMapping("/web/calls")
-public class CallWebController {
+public class CallsWebController {
     CallController callController;
     SessionManager sessionManager;
 
     @Autowired
-    public CallWebController(CallController callController, SessionManager sessionManager) {
+    public CallsWebController(CallController callController, SessionManager sessionManager) {
         this.callController = callController;
         this.sessionManager = sessionManager;
     }

@@ -3,6 +3,7 @@ package edu.utn.UTNPhones.controllers.domain;
 import edu.utn.UTNPhones.domain.Call;
 
 import edu.utn.UTNPhones.domain.User;
+import edu.utn.UTNPhones.dtos.NewCallDto;
 import edu.utn.UTNPhones.exceptions.ParamException;
 import edu.utn.UTNPhones.exceptions.ValidationException;
 import edu.utn.UTNPhones.projections.CallOfUser;
@@ -23,8 +24,7 @@ public class CallController {
     @Autowired
     CallService callService;
 
-    public Call create(@RequestBody Call call) throws ParamException, ValidationException {
-        if(call.verifyNullValues()) throw new ParamException("Missing data");
+    public Call create(NewCallDto call) throws ValidationException {
         return this.callService.create(call);
     }
 

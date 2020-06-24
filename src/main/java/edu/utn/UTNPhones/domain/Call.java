@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.stream.Stream;
 
@@ -50,7 +51,7 @@ public class Call {
     private Integer duration;
 
     @Column(name="date_time", nullable = false)
-    private Date callDate;
+    private LocalDateTime callDate;
 
     @Column(name="total_cost")
     private Float totalCost;
@@ -58,7 +59,7 @@ public class Call {
     @Column(name="total_price")
     private Float totalPrice;
 
-    public Call(String originNumberLine, String destinationNumberLine, Integer duration, Date callDate) {
+    public Call(String originNumberLine, String destinationNumberLine, Integer duration, LocalDateTime callDate) {
         this.originNumberLine = originNumberLine;
         this.destinationNumberLine = destinationNumberLine;
         this.duration = duration;

@@ -47,7 +47,7 @@ public class Configuration {
     public FilterRegistrationBean myFilterAdmin() {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(sysSessionFilter);
-        registration.addUrlPatterns("/sys/*");
+        registration.addUrlPatterns("/SYS/*");
         return registration;
     }
 }
