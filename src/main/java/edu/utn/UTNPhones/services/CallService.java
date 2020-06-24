@@ -1,12 +1,15 @@
 package edu.utn.UTNPhones.services;
 
 import edu.utn.UTNPhones.domain.Call;
+<<<<<<< HEAD
 import edu.utn.UTNPhones.domain.User;
 import edu.utn.UTNPhones.dtos.NewCallDto;
 import edu.utn.UTNPhones.exceptions.ValidationException;
 import edu.utn.UTNPhones.projections.CallOfUser;
 import edu.utn.UTNPhones.projections.MinutesOfCallNewYear2001;
 import edu.utn.UTNPhones.projections.TopTenDestinationsByUser;
+=======
+>>>>>>> parent of b03c9c7... Parcial Laboratorio 5
 import edu.utn.UTNPhones.repositories.ICallRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -38,7 +41,10 @@ public class CallService {
         return this.callRepository.getCallsByDates(firstDate.toString(),secondDate.toString(),loggedUser.getIdCard());
     }
 
+<<<<<<< HEAD
     public List<TopTenDestinationsByUser> getTopTenDestinations(User loggedUser) {
         return this.callRepository.getTopTenDestinationsByUser(loggedUser.getIdCard());
     }
+=======
+>>>>>>> parent of b03c9c7... Parcial Laboratorio 5
 }

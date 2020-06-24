@@ -1,17 +1,20 @@
 package edu.utn.UTNPhones.repositories;
 
 import edu.utn.UTNPhones.domain.Call;
+<<<<<<< HEAD
 import edu.utn.UTNPhones.projections.CallOfUser;
 import edu.utn.UTNPhones.projections.MinutesOfCallNewYear2001;
 import edu.utn.UTNPhones.projections.TopTenDestinationsByUser;
+=======
+>>>>>>> parent of b03c9c7... Parcial Laboratorio 5
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 public interface ICallRepository extends JpaRepository<Call,Integer> {
+<<<<<<< HEAD
 
     @Query(value = "SELECT\n" +
             "TIME_FORMAT(sum(SEC_TO_TIME(ca.duration)),'%i:%s') AS 'MinutesOfNewYear2001'\n" +
@@ -32,4 +35,6 @@ public interface ICallRepository extends JpaRepository<Call,Integer> {
             "WHERE DniUserOrigin = ? \n" +
             "GROUP BY DestinationCall ORDER BY DestinationCall ASC LIMIT 10;", nativeQuery = true)
     List<TopTenDestinationsByUser> getTopTenDestinationsByUser(String idCard);
+=======
+>>>>>>> parent of b03c9c7... Parcial Laboratorio 5
 }
