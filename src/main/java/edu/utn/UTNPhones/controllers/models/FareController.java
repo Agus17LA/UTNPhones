@@ -1,13 +1,11 @@
-package edu.utn.UTNPhones.controllers.domain;
+package edu.utn.UTNPhones.controllers.models;
 
 import edu.utn.UTNPhones.domain.Fare;
-import edu.utn.UTNPhones.exceptions.EmptyListException;
 import edu.utn.UTNPhones.exceptions.NotExistException;
-import edu.utn.UTNPhones.exceptions.ParamException;
 import edu.utn.UTNPhones.services.FareService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
 

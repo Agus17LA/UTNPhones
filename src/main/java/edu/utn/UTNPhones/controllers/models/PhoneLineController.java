@@ -1,10 +1,9 @@
-package edu.utn.UTNPhones.controllers.domain;
+package edu.utn.UTNPhones.controllers.models;
 
 import edu.utn.UTNPhones.domain.PhoneLine;
 import edu.utn.UTNPhones.exceptions.ParamException;
 import edu.utn.UTNPhones.services.PhoneLineService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;

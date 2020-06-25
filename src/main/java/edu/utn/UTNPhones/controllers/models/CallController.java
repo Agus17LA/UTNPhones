@@ -1,22 +1,18 @@
-package edu.utn.UTNPhones.controllers.domain;
+package edu.utn.UTNPhones.controllers.models;
 
 import edu.utn.UTNPhones.domain.Call;
 
 import edu.utn.UTNPhones.domain.User;
 import edu.utn.UTNPhones.dtos.NewCallDto;
-import edu.utn.UTNPhones.exceptions.ParamException;
 import edu.utn.UTNPhones.exceptions.ValidationException;
 import edu.utn.UTNPhones.projections.CallOfUser;
-import edu.utn.UTNPhones.projections.MinutesOfCallNewYear2001;
 import edu.utn.UTNPhones.projections.TopTenDestinationsByUser;
 import edu.utn.UTNPhones.services.CallService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Controller

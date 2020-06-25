@@ -1,6 +1,6 @@
 package edu.utn.UTNPhones.controllers.backoffice;
 
-import edu.utn.UTNPhones.controllers.domain.CallController;
+import edu.utn.UTNPhones.controllers.models.CallController;
 import edu.utn.UTNPhones.exceptions.ParamException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

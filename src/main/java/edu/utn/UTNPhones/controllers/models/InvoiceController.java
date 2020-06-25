@@ -1,4 +1,4 @@
-package edu.utn.UTNPhones.controllers.domain;
+package edu.utn.UTNPhones.controllers.models;
 
 import edu.utn.UTNPhones.domain.Invoice;
 import edu.utn.UTNPhones.domain.User;
@@ -7,9 +7,7 @@ import edu.utn.UTNPhones.exceptions.ValidationException;
 import edu.utn.UTNPhones.services.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 

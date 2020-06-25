@@ -1,6 +1,6 @@
 package edu.utn.UTNPhones.controllers.sys;
 
-import edu.utn.UTNPhones.controllers.domain.CallController;
+import edu.utn.UTNPhones.controllers.models.CallController;
 import edu.utn.UTNPhones.dtos.NewCallDto;
 import edu.utn.UTNPhones.exceptions.ParamException;
 import edu.utn.UTNPhones.exceptions.ValidationException;

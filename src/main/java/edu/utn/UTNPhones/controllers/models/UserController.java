@@ -1,10 +1,11 @@
-package edu.utn.UTNPhones.controllers.domain;
+package edu.utn.UTNPhones.controllers.models;
 
 import edu.utn.UTNPhones.domain.User;
 import edu.utn.UTNPhones.dtos.LoginRequestDto;
 import edu.utn.UTNPhones.exceptions.NotExistException;
 import edu.utn.UTNPhones.exceptions.ParamException;
 import edu.utn.UTNPhones.services.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@AllArgsConstructor
 @Controller
 public class UserController {
     @Autowired

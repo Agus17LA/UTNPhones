@@ -1,6 +1,6 @@
 package edu.utn.UTNPhones.controllers;
 
-import edu.utn.UTNPhones.controllers.domain.UserController;
+import edu.utn.UTNPhones.controllers.models.UserController;
 import edu.utn.UTNPhones.domain.User;
 import edu.utn.UTNPhones.dtos.LoginRequestDto;
 import edu.utn.UTNPhones.exceptions.NotExistException;
@@ -11,7 +11,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.TimeZone;
 
 @RestController
