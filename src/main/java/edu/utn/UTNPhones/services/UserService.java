@@ -30,24 +30,10 @@ public class UserService {
         return Optional.ofNullable(user).orElseThrow(()-> new NotExistException("User not exists"));
     }
 
-    /*                                 ------                                      */
-
-    public User create(User user) throws DataAccessException {
-        return this.userRepository.save(user);
-    }
-
     public List getUsers(String dni) throws DataAccessException {
         return dni != null ? Collections.singletonList(this.userRepository.getByIdCard(dni).orElseThrow()) : this.userRepository.findAll();
     }
 
-    public void delete(Integer userId) throws DataAccessException,NotExistException {
-        User user = userRepository.getOne(userId);
-        if(user!=null)
-            userRepository.delete(user);
-        else
-            throw new NotExistException("User not exists");
-    }
-    /* ---------------------------------------------------------------------------------- */
     public User addClient(User client) throws DataAccessException{
         return userRepository.save(client);
     }

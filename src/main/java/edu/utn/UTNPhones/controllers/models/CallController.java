@@ -8,13 +8,14 @@ import edu.utn.UTNPhones.exceptions.ValidationException;
 import edu.utn.UTNPhones.projections.CallOfUser;
 import edu.utn.UTNPhones.projections.TopTenDestinationsByUser;
 import edu.utn.UTNPhones.services.CallService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
+@AllArgsConstructor
 @Controller
 public class CallController {
     @Autowired

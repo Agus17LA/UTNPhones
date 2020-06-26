@@ -6,7 +6,6 @@ import edu.utn.UTNPhones.dtos.LoginRequestDto;
 import edu.utn.UTNPhones.exceptions.NotExistException;
 import edu.utn.UTNPhones.exceptions.ParamException;
 import edu.utn.UTNPhones.services.UserService;
-import org.aspectj.weaver.ast.Not;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

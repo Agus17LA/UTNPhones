@@ -3,6 +3,7 @@ package edu.utn.UTNPhones.controllers.backoffice;
 import edu.utn.UTNPhones.controllers.models.PhoneLineController;
 import edu.utn.UTNPhones.domain.PhoneLine;
 import edu.utn.UTNPhones.exceptions.ParamException;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
+@AllArgsConstructor
 @RestController
 @RequestMapping("/backoffice/lines")
 public class PhoneLinesBackController {

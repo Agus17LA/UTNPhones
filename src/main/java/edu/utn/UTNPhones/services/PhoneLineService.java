@@ -45,12 +45,10 @@ public class PhoneLineService {
 
     public PhoneLine update(String numberLine, Map<String, Object> changes) throws DataAccessException, ParamException {
         PhoneLine phoneLine = phoneLineRepository.getByNumberLine(numberLine).orElseThrow();
-        if(changes.containsKey("user") || changes.containsKey("lineType") || changes.containsKey("lineStatus")) {
+        if(changes.containsKey("lineType") || changes.containsKey("lineStatus")) {
             changes.forEach(
                     (change, value) -> {
                         switch (change) {
-                            case "user":
-                                phoneLine.setUser((User) userService.getUsers((String) value).get(0)); break;
                             case "lineType":
                                 phoneLine.setLineType(PhoneLine.LineType.valueOf((String) value)); break;
                             case "lineStatus":
@@ -58,7 +56,7 @@ public class PhoneLineService {
                         }
                     }
             );
-        } else throw new ParamException("You can only modify: 'user' - 'lineType' - 'lineStatus'");
+        } else throw new ParamException("You can only modify: 'lineType' - 'lineStatus'");
         return phoneLineRepository.save(phoneLine);
     }
 

@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -28,11 +30,11 @@ public class Invoice {
 
     @Column(name="invoice_date")
 
-    private Date invoiceDate;
+    private LocalDateTime invoiceDate;
 
     @Column(name="invoice_expiry_date")
 
-    private Date invoiceExpiryDate;
+    private LocalDateTime invoiceExpiryDate;
 
     @Column(name="total_cost")
 

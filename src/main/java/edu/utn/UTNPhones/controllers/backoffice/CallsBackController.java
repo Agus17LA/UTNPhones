@@ -2,6 +2,7 @@ package edu.utn.UTNPhones.controllers.backoffice;
 
 import edu.utn.UTNPhones.controllers.models.CallController;
 import edu.utn.UTNPhones.exceptions.ParamException;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/backoffice/calls")
 public class CallsBackController {

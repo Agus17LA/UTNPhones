@@ -5,6 +5,7 @@ import edu.utn.UTNPhones.domain.Fare;
 import edu.utn.UTNPhones.exceptions.NotExistException;
 import edu.utn.UTNPhones.repositories.ICityRepository;
 import edu.utn.UTNPhones.repositories.IFareRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;

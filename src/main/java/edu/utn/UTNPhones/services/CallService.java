@@ -8,6 +8,7 @@ import edu.utn.UTNPhones.projections.CallOfUser;
 import edu.utn.UTNPhones.projections.MinutesOfCallNewYear2001;
 import edu.utn.UTNPhones.projections.TopTenDestinationsByUser;
 import edu.utn.UTNPhones.repositories.ICallRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
-
+@AllArgsConstructor
 @Service
 public class CallService {
 

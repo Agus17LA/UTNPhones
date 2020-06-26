@@ -1,4 +1,4 @@
-package edu.utn.UTNPhones.controllers;
+package edu.utn.UTNPhones.controllers.advice;
 
 import edu.utn.UTNPhones.dtos.ErrorResponseDto;
 import edu.utn.UTNPhones.exceptions.*;
