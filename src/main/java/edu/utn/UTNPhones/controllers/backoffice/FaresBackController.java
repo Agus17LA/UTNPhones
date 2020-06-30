@@ -18,7 +18,9 @@ public class FaresBackController {
     FareController fareController;
 
     @GetMapping("/")
-    public ResponseEntity getFares(@RequestParam(required = false)Optional<String> originCity, @RequestParam(required = false) Optional<String> destinationCity) throws NotExistException {
+    public ResponseEntity getFares(@RequestParam(required = false)Optional<String> originCity, @RequestParam(required = false)
+            Optional<String> destinationCity) throws NotExistException {
+
         List fares = fareController.getFares(originCity,destinationCity);
         if(fares.isEmpty()) return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         return ResponseEntity.ok().body(fares);

@@ -19,7 +19,7 @@ public class InvoicesBackController {
     @Autowired
     InvoiceController invoiceController;
 
-    @GetMapping("/{numberLine}")
+    @GetMapping(value={"/{numberLine}","/"})
     public ResponseEntity getInvoices(@PathVariable(required = false) Optional<String> numberLine){
         List invoices = invoiceController.getInvoices(numberLine);
         if(invoices.isEmpty()) return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

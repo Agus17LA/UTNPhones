@@ -20,7 +20,7 @@ public class InvoiceService {
 
     public List<Invoice> getInvoicesBetweenDates(DatesDto dates, User loggedUser) throws ValidationException {
         if( dates.getSecondDate().isBefore(dates.getFirstDate())) throw new ValidationException("The second date must be greater than the first");
-        return invoiceRepository.getInvoicesBetweenDates(dates.getFirstDate(),dates.getSecondDate(),loggedUser.getId());
+        return invoiceRepository.getInvoicesBetweenDates(dates.getFirstDate().toString(),dates.getSecondDate().toString(),loggedUser.getId());
     }
 
     public List getInvoices(Optional<String> numberLine) {
