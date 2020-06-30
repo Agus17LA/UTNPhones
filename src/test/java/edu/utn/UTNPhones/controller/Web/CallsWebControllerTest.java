@@ -7,6 +7,7 @@ import edu.utn.UTNPhones.dtos.NewCallDto;
 import edu.utn.UTNPhones.exceptions.ParamException;
 import edu.utn.UTNPhones.exceptions.ValidationException;
 import edu.utn.UTNPhones.projections.CallOfUser;
+import edu.utn.UTNPhones.projections.Calls;
 import edu.utn.UTNPhones.projections.TopTenDestinationsByUser;
 import edu.utn.UTNPhones.session.SessionManager;
 import org.junit.Before;
@@ -62,11 +63,21 @@ public class CallsWebControllerTest {
     @Test
     public void getCallsByDatesOk() throws ValidationException, ParamException {
         DatesDto datesDto = new DatesDto(LocalDateTime.parse("2020-05-10T00:00"),LocalDateTime.parse("2020-05-15T00:00"));
+        Calls calls = factory.createProjection(Calls.class);
         when(sessionManager.getCurrentUser("123")).thenReturn(this.user);
-        when(callController.getCallsByDates(datesDto.getFirstDate(),datesDto.getSecondDate(),this.user)).thenReturn(List.of(callOfUser));
+        when(callController.getCallsByDates(datesDto.getFirstDate(),datesDto.getSecondDate(),this.user)).thenReturn(List.of(calls));
         ResponseEntity responseEntity = this.callsWebController.getCallsByDates("123",datesDto);
         assertEquals(200,responseEntity.getStatusCodeValue());
-        assertEquals(List.of(callOfUser),responseEntity.getBody());
+        assertEquals(List.of(calls),responseEntity.getBody());
+    }
+
+    @Test
+    public void getCallsByDatesEmpty() throws ValidationException, ParamException {
+        DatesDto datesDto = new DatesDto(LocalDateTime.parse("2020-05-10T00:00"),LocalDateTime.parse("2020-05-15T00:00"));
+        when(sessionManager.getCurrentUser("123")).thenReturn(this.user);
+        when(callController.getCallsByDates(datesDto.getFirstDate(),datesDto.getSecondDate(),this.user)).thenReturn(List.of());
+        ResponseEntity responseEntity = this.callsWebController.getCallsByDates("123",datesDto);
+        assertEquals(204,responseEntity.getStatusCodeValue());
     }
 
     @Test
@@ -78,5 +89,14 @@ public class CallsWebControllerTest {
         ResponseEntity responseEntity = this.callsWebController.getTopTenDestinations("123");
         assertEquals(200,responseEntity.getStatusCodeValue());
         assertEquals(listTop,responseEntity.getBody());
+    }
+
+    @Test
+    public void getTopTenDestinationsEmpty(){
+        TopTenDestinationsByUser topTenDestinationsByUser = factory.createProjection(TopTenDestinationsByUser.class);
+        when(sessionManager.getCurrentUser("123")).thenReturn(this.user);
+        when(callController.getTopTenDestinations(this.user)).thenReturn(List.of());
+        ResponseEntity responseEntity = this.callsWebController.getTopTenDestinations("123");
+        assertEquals(204,responseEntity.getStatusCodeValue());
     }
 }

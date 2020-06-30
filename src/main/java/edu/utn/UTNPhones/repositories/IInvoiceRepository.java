@@ -18,9 +18,7 @@ public interface IInvoiceRepository extends JpaRepository<Invoice, Integer> {
             "invoices i \n" +
             "inner join phone_lines pl\n" +
             "on i.number_line = pl.number_line\n" +
-            "inner join users u\n" +
-            "on pl.user_id = u.id\n" +
-            "WHERE i.invoice_date >= ?1 AND i.invoice_date <= ?2 AND u.id = ?3;",nativeQuery = true)
+            "WHERE (i.invoice_date BETWEEN ?1 AND ?2) AND pl.id = ?3;",nativeQuery = true)
     List<Invoice> getInvoicesBetweenDates(LocalDateTime firstDate, LocalDateTime secondDate, Integer id);
 
     Optional<List<Invoice>> findAllByNumberLine(String numberLine);

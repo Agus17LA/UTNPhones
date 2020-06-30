@@ -8,9 +8,9 @@ select * from phone_lines;
 select * from calls;
 select * from invoices;
 
-update users set User_Type = 'EMPLOYEE' where id=1;
+update users set User_Type = 'CLIENT' where id=1;
 
-INSERT INTO calls (origin_number_line, destination_number_line, duration, date_time) values ("2262677713","2262111111",160,"2020-11-03T03:21:30");
+INSERT INTO calls (origin_number_line, destination_number_line, duration, date_time) values ("2262111111","2231234567",160,"2020-11-03T03:21:30");
 INSERT INTO phone_lines (user_id,number_line,line_type) values (2,"2231234567","MOBILE");
 
 /* Generacion automatica de fares */

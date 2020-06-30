@@ -52,4 +52,13 @@ public class InvoicesWebControllerTest {
         assertEquals(List.of(invoice),responseEntity.getBody());
     }
 
+    @Test
+    public void getInvoicesBetweenDatesTestEmpty() throws ValidationException, ParamException {
+        DatesDto datesDto = new DatesDto(LocalDateTime.parse("2020-05-10T00:00"),LocalDateTime.parse("2020-05-15T00:00"));
+        when(sessionManager.getCurrentUser("123")).thenReturn(this.user);
+        when(invoiceController.getInvoicesBetweenDates(datesDto,this.user)).thenReturn(List.of());
+        ResponseEntity responseEntity = this.invoicesWebController.getInvoicesBetweenDates("123",datesDto);
+        assertEquals(204,responseEntity.getStatusCodeValue());
+    }
+
 }

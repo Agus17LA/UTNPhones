@@ -1,12 +1,15 @@
 package edu.utn.UTNPhones.controller.models;
 import edu.utn.UTNPhones.controllers.models.CallController;
 import edu.utn.UTNPhones.domain.Call;
+import edu.utn.UTNPhones.domain.PhoneLine;
 import edu.utn.UTNPhones.domain.User;
 import edu.utn.UTNPhones.dtos.NewCallDto;
 import edu.utn.UTNPhones.exceptions.ValidationException;
 import edu.utn.UTNPhones.projections.CallOfUser;
+import edu.utn.UTNPhones.projections.Calls;
 import edu.utn.UTNPhones.projections.TopTenDestinationsByUser;
 import edu.utn.UTNPhones.services.CallService;
+import edu.utn.UTNPhones.services.PhoneLineService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -23,16 +26,19 @@ import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.*;
 public class CallControllerTest {
     private CallController callController;
+
     private Call call;
     private List<CallOfUser> list;
     private ProjectionFactory factory;
     @Mock
     private CallService callService;
+    @Mock
+    private PhoneLineService phoneLineService;
 
     @Before
     public void setUp(){
         initMocks(this);
-        this.callController = new CallController(callService);
+        this.callController = new CallController(callService,phoneLineService);
         this.call = new Call(1,null,"2262677713",null,null,
                 "2262677463",null,null,120, LocalDateTime.parse("2020-05-01T00:00:00"), (float) 5, (float) 10);
         factory = new SpelAwareProxyProjectionFactory();
@@ -58,10 +64,14 @@ public class CallControllerTest {
 
     @Test
     public void getCallsByDatesTest() throws ValidationException {
-        when(callService.getCallsByDates(null,null,new User())).thenReturn(this.list);
-        List<CallOfUser> responseCallOfUser = callController.getCallsByDates(null,null,new User());
-        assertEquals(responseCallOfUser,this.list);
-        verify(callService,times(1)).getCallsByDates(null,null,new User());
+        User user = new User(1,"41923121","Agustin","Lopez","agezlo","asdasd", User.UserType.CLIENT,true,null);
+        List phoneLines = Collections.singletonList(new PhoneLine(1,user,"2262677713", PhoneLine.LineType.MOBILE, PhoneLine.LineStatus.ACTIVE));
+        Calls calls = factory.createProjection(Calls.class);
+        when(callService.getCallsByDates(null,null,phoneLines)).thenReturn(List.of(calls));
+        when(phoneLineService.getLinesOfUser("41923121")).thenReturn(phoneLines);
+        List<Calls> responseCallOfUser = callController.getCallsByDates(null,null,user);
+        assertEquals(List.of(calls),responseCallOfUser);
+        verify(callService,times(1)).getCallsByDates(null,null,phoneLines);
     }
 
     @Test

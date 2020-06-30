@@ -27,7 +27,6 @@ public class LoginController {
 
     @PostMapping("/")
     public ResponseEntity login(@RequestBody LoginRequestDto loginRequestDto) throws ParamException, NotExistException {
-        System.out.println(TimeZone.getDefault()+"  ----  "+TimeZone.getAvailableIDs());
         ResponseEntity response;
         try {
             User u = userController.login(loginRequestDto);

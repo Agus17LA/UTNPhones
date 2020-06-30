@@ -1,0 +1,93 @@
+use UtnPhones
+
+/* Las tablas se crean automaticamente al insertar un dato */
+
+db.provinces.insert({
+	id: 1,
+	name: "Buenos Aires"
+})
+
+db.cities.insert({
+	id: 1,
+	name: "Necochea",
+	city_prefix: "2262",
+	province: {
+		id: 1
+	}
+})
+
+db.users.insert({
+	id: 1,
+	name: "Agustín",
+	surname: "López",
+	dni: "41923121",
+	username: "agezlo",
+	password: "asdasd",
+	user_type: {
+		name: "CLIENT"
+	},
+	user_status: true,
+	city: {
+		id: 1
+	}
+})
+
+db.fares.insert({
+	id: 1,
+	origin_city: {
+		id: 1
+	},
+	destination_city: {
+		id: 1
+	},
+	cost_per_minute: 0.5,
+	price_per_minute: 2.5
+})
+
+db.phone_lines.insert({
+	id: 1,
+	user: {
+		id: 1
+	},
+	number_line: "2262677713",
+	line_type: {
+		name: "MOBILE"
+	},
+	status: {
+		name: "ACTIVE"
+	}
+})
+
+db.invoices.insert({
+	id: 1,
+    	number_line: "2262677713",
+	quantity_calls: 5,
+	total_price: 20.5,
+	total_cost: 15.25,
+	invoice_date: "2020-05-01T00:00:00",
+	invoice_expiry_date: "2020-05-15T23:59:59",
+	is_paid: false
+})
+
+db.calls.insert({
+	id: 1,
+	origin_line_id: {
+		id: 1
+	},
+	origin_number_line: "2262677713",
+	origin_city_id: {
+		id: 1
+	},
+	destination_line_id: {
+		id: 2
+	},
+	destination_number_line: "2262677463",
+	destination_city_id: {
+		id: 1
+	},
+	invoice_id: 1,
+	duration: 120,
+	date_time:"2020-04-10T08:30:00",
+	total_cost: 5.25,
+	total_price: 10.5
+})

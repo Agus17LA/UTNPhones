@@ -50,4 +50,5 @@ public class Configuration {
         registration.addUrlPatterns("/SYS/*");
         return registration;
     }
+
 }

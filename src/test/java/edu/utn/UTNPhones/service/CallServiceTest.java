@@ -1,10 +1,12 @@
 package edu.utn.UTNPhones.service;
 import edu.utn.UTNPhones.domain.Call;
+import edu.utn.UTNPhones.domain.PhoneLine;
 import edu.utn.UTNPhones.domain.User;
 import edu.utn.UTNPhones.dtos.DatesDto;
 import edu.utn.UTNPhones.dtos.NewCallDto;
 import edu.utn.UTNPhones.exceptions.ValidationException;
 import edu.utn.UTNPhones.projections.CallOfUser;
+import edu.utn.UTNPhones.projections.Calls;
 import edu.utn.UTNPhones.projections.TopTenDestinationsByUser;
 import edu.utn.UTNPhones.repositories.ICallRepository;
 import edu.utn.UTNPhones.services.CallService;
@@ -67,25 +69,28 @@ public class CallServiceTest {
 
     @Test
     public void getCallsByDatesTest() throws ValidationException {
-        when(callRepository.getCallsByDates("2020-05-10T00:00","2020-05-15T00:00", "41923121")).thenReturn(this.list);
+        List phoneLines = Collections.singletonList(new PhoneLine(1,null,"2262677713", PhoneLine.LineType.MOBILE, PhoneLine.LineStatus.ACTIVE));
+        Calls calls = factory.createProjection(Calls.class);
+        when(callRepository.getCallsByDatesAndNumber("2020-05-10T00:00","2020-05-15T00:00", "2262677713")).thenReturn(List.of(calls));
         User user = new User();
         user.setIdCard("41923121");
-        List<CallOfUser> responseList = this.callService.getCallsByDates(LocalDateTime.parse("2020-05-10T00:00:00"),LocalDateTime.parse("2020-05-15T00:00:00"), user);
-        assertEquals(responseList,this.list);
+        List<Calls> responseList = this.callService.getCallsByDates(LocalDateTime.parse("2020-05-10T00:00:00"),LocalDateTime.parse("2020-05-15T00:00:00"), phoneLines);
+        assertEquals(List.of(calls),responseList.get(0));
     }
 
     @Test
     public void getCallsByDatesBadTest(){
+        List phoneLines = Collections.singletonList(new PhoneLine(1,null,"2262677713", PhoneLine.LineType.MOBILE, PhoneLine.LineStatus.ACTIVE));
         assertThrows(ValidationException.class, ()-> {
-            callService.getCallsByDates(LocalDateTime.parse("2020-05-10T00:00:00"),LocalDateTime.parse("2020-05-01T00:00:00"),new User());
+            callService.getCallsByDates(LocalDateTime.parse("2020-05-10T00:00:00"),LocalDateTime.parse("2020-05-01T00:00:00"),phoneLines);
         });
     }
 
     @Test
     public void getTopTenDestinationsTest(){
-        when(callRepository.getTopTenDestinationsByUser("41923121")).thenReturn(this.listTop);
+        when(callRepository.getTopTenDestinationsByUser(1)).thenReturn(this.listTop);
         User user = new User();
-        user.setIdCard("41923121");
+        user.setId(1);
         List<TopTenDestinationsByUser> responseTop = this.callService.getTopTenDestinations(user);
         assertEquals(responseTop,this.listTop);
     }

@@ -18,14 +18,14 @@ import java.util.stream.Stream;
 public class Call {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id",nullable = false)
+    @Column(name="id")
     private Integer id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="origin_line_id")
     private PhoneLine originPhone;
 
-    @Column(name="origin_number_line", nullable = false)
+    @Column(name="origin_number_line")
     private String originNumberLine;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -36,7 +36,7 @@ public class Call {
     @JoinColumn(name="destination_line_id")
     private PhoneLine destinationPhone;
 
-    @Column(name="destination_number_line", nullable = false)
+    @Column(name="destination_number_line")
     private String destinationNumberLine;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -47,10 +47,10 @@ public class Call {
     @JoinColumn(name = "invoice_id")
     private Invoice invoice;
 
-    @Column(name="duration", nullable = false)
+    @Column(name="duration")
     private Integer duration;
 
-    @Column(name="date_time", nullable = false)
+    @Column(name="date_time")
     private LocalDateTime callDate;
 
     @Column(name="total_cost")
@@ -58,6 +58,16 @@ public class Call {
 
     @Column(name="total_price")
     private Float totalPrice;
+
+    public Call(PhoneLine originPhone, City originCity, PhoneLine destinationPhone, City destinationCity, Integer duration, LocalDateTime callDate, Float totalPrice) {
+        this.originPhone = originPhone;
+        this.originCity = originCity;
+        this.destinationPhone = destinationPhone;
+        this.destinationCity = destinationCity;
+        this.duration = duration;
+        this.callDate = callDate;
+        this.totalPrice = totalPrice;
+    }
 
     public Call(String originNumberLine, String destinationNumberLine, Integer duration, LocalDateTime callDate) {
         this.originNumberLine = originNumberLine;

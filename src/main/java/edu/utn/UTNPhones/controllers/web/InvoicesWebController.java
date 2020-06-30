@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/web/invoices")
 public class InvoicesWebController {
@@ -26,7 +28,9 @@ public class InvoicesWebController {
     public ResponseEntity getInvoicesBetweenDates(@RequestHeader("Authorization") String sessionToken, @RequestBody DatesDto dates) throws ParamException, ValidationException {
         if(dates.getFirstDate() == null || dates.getSecondDate() == null) throw new ParamException("You must enter both dates");
         User loggedUser = sessionManager.getCurrentUser(sessionToken);
-        return ResponseEntity.ok().body(invoiceController.getInvoicesBetweenDates(dates,loggedUser));
+        List invoices = invoiceController.getInvoicesBetweenDates(dates,loggedUser);
+        if(invoices.isEmpty()) return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().body(invoices);
     }
 
 }

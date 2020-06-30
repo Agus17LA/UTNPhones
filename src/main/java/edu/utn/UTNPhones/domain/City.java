@@ -26,7 +26,7 @@ public class City {
     @Column(name="city_name", unique = true)
     private String cityName;
 
-    @Column(name="city_prefix", unique = true)
+    @Column(name="city_prefix")
     private Integer cityPrefix;
 
     public boolean verifyNullValues(){
