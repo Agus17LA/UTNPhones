@@ -41,8 +41,8 @@ public class InvoiceServiceTest {
     public void getInvoicesBetweenDates() throws ValidationException {
         List<Invoice> list = new ArrayList<>();
         list.add(invoice);
-        when(invoiceRepository.getInvoicesBetweenDates("2020-05-10T00:00:00",
-                "2020-06-15T00:00:00",1)).thenReturn(list);
+        when(invoiceRepository.getInvoicesBetweenDates(LocalDateTime.parse("2020-05-10T00:00:00").toString(),
+                LocalDateTime.parse("2020-06-15T00:00:00").toString(),1)).thenReturn(list);
         List<Invoice> listResponse = this.invoiceService.getInvoicesBetweenDates(new DatesDto(LocalDateTime.parse("2020-05-10T00:00:00"),
                 LocalDateTime.parse("2020-06-15T00:00:00")),this.user);
         assertEquals(listResponse,list);
